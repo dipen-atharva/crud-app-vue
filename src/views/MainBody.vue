@@ -33,11 +33,12 @@ function clearCompleted() {
 </script>
 
 <template id="task-list">
+  <h1 id="tagLine">Just Do It.</h1>
   <h1>Tasks <span v-if="pendingTasks">({{ pendingTasks }})</span></h1>
   <section class="tasks">
     <div class="d-flex justify-content-evenly m-2">
-      <input class="input-field-task" type="text" v-model="newTask" placeholder="add task" @keyup.enter="addTask">
-      <button type="button" class="btn btn-outline-success" @click="addTask">Add </button>
+      <input class="input-field-task" type="text" v-model="newTask" placeholder="Add a task" @keyup.enter="addTask">
+      <button type="button" class="btn btn-outline-light" @click="addTask">Add </button>
     </div>
 
     <div class="d-flex justify-content-end ">
@@ -46,7 +47,7 @@ function clearCompleted() {
     </div>
 
     <TransitionGroup name="list" tag="ul" class="list-group mt-2">
-      <li class="list-group-item d-flex" v-for="(task, index) in taskList" :task="task" :key="task">
+      <li class="list-group-item d-flex m-2" v-for="(task, index) in taskList" :task="task" :key="task">
         <button type="button" :class="['btn', 'me-2', 'taskListItem', { 'completed': task.isCompleted }]"
           @click="completeTask(task)">
           {{ task.name }}
@@ -59,6 +60,12 @@ function clearCompleted() {
 </template>
 
 <style scoped>
+#tagLine {
+  font-size: 100px;
+  text-align: center;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
 .taskListItem {
   width: 100%;
   text-align: left;
